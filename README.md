@@ -4,23 +4,17 @@ Sistema elaborado como projeto final para a disciplina de LTP1 do professor Mate
 
 ## Tela de Login
 
-![Tela de Login](./print/login.png)
+![Tela de Login](print/login.jpg)
 
 ## Tela de Cadastro
 
 Permite inserir os dados dos jogos, tela a parte para os gêneros.
 
-![Tela de Cadastro](./print/cadastro.png)
-![Tela de Cadastro](print/generos.png)
+![Tela de Cadastro](print/cadastro.jpg)
+![Tela de Gêneros](print/generos.jpg)
 
 ## Listagem de Jogos
 
-lista os jogos e permite busca por titulo do game.
+Lista os jogos e permite busca por título do game.
 
-![Listagem de Jogos](print/listagem.png)
-
-## Login
-
-Permite login com user dinâmico verificado por hash256.
-
-![Login] (print/login.png)
+![Listagem de Jogos](print/listagem.jpg)

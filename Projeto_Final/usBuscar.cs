@@ -22,11 +22,15 @@ namespace Projeto_Final
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns.Clear();
             dataGridView1.Columns.AddRange(
-                new DataGridViewTextBoxColumn { Name = "colTitulo", HeaderText = "Título", FillWeight = 22 },
-                new DataGridViewTextBoxColumn { Name = "colAnoLancamento", HeaderText = "Ano de lançamento", FillWeight = 14 },
-                new DataGridViewTextBoxColumn { Name = "colDesenvolvedora", HeaderText = "Desenvolvedora", FillWeight = 20 },
-                new DataGridViewTextBoxColumn { Name = "colDescricao", HeaderText = "Descrição", FillWeight = 30 },
-                new DataGridViewTextBoxColumn { Name = "colGenero", HeaderText = "Gênero", FillWeight = 14 });
+                new DataGridViewTextBoxColumn { Name = "idjogos", DataPropertyName = "idjogos", Visible = false },
+                new DataGridViewTextBoxColumn { Name = "colTitulo", HeaderText = "Título", DataPropertyName = "nome", FillWeight = 20 },
+                new DataGridViewTextBoxColumn { Name = "colPlataforma", HeaderText = "Plataforma", DataPropertyName = "plataforma", FillWeight = 12 },
+                new DataGridViewTextBoxColumn { Name = "colGenero", HeaderText = "Gênero", DataPropertyName = "genero", FillWeight = 13 },
+                new DataGridViewTextBoxColumn { Name = "colDesenvolvedora", HeaderText = "Desenvolvedora", DataPropertyName = "desenvolvedora", FillWeight = 17 },
+                new DataGridViewTextBoxColumn { Name = "colAnoLancamento", HeaderText = "Ano", DataPropertyName = "ano_lancamento", FillWeight = 8 },
+                new DataGridViewTextBoxColumn { Name = "colNota", HeaderText = "Nota", DataPropertyName = "nota", FillWeight = 8 },
+                new DataGridViewTextBoxColumn { Name = "colDescricao", HeaderText = "Observação", DataPropertyName = "observacao", FillWeight = 22 }
+            );
 
             dataGridView1.ColumnHeadersVisible = true;
             dataGridView1.EnableHeadersVisualStyles = false;
@@ -41,6 +45,12 @@ namespace Projeto_Final
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.FromArgb(38, 18, 53);
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(247, 245, 250);
             dataGridView1.GridColor = Color.FromArgb(220, 220, 225);
+        }
+
+        public void lista_gridGames()
+        {
+            ConectaBanco con = new ConectaBanco();
+            dataGridView1.DataSource = con.listaGames();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -60,7 +70,8 @@ namespace Projeto_Final
 
         private void usBuscar_Load(object sender, EventArgs e)
         {
-
+            lista_gridGames();
+            dataGridView1.ReadOnly = true;
         }
 
         private void pictureBoxImagemTopo_Click(object sender, EventArgs e)
@@ -70,17 +81,79 @@ namespace Projeto_Final
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Selecione um jogo na tabela para alterar.");
+                return;
+            }
 
+            int linha = dataGridView1.CurrentRow.Index;
+            int idAlterar = Convert.ToInt32(dataGridView1.Rows[linha].Cells["idjogos"].Value);
+            string nome = dataGridView1.Rows[linha].Cells["colTitulo"].Value.ToString();
+            string plataforma = dataGridView1.Rows[linha].Cells["colPlataforma"].Value.ToString();
+            string genero = dataGridView1.Rows[linha].Cells["colGenero"].Value.ToString();
+            string desenvolvedora = dataGridView1.Rows[linha].Cells["colDesenvolvedora"].Value.ToString();
+            int ano = Convert.ToInt32(dataGridView1.Rows[linha].Cells["colAnoLancamento"].Value);
+            decimal nota = Convert.ToDecimal(dataGridView1.Rows[linha].Cells["colNota"].Value);
+            string observacao = dataGridView1.Rows[linha].Cells["colDescricao"].Value.ToString();
+
+            Form1 formPrincipal = (Form1)this.FindForm();
+            formPrincipal.PreencherAbaAlterar(idAlterar, nome, plataforma, genero, desenvolvedora, ano, nota, observacao);
+        
         }
 
         private void btnBuscarNome_Click(object sender, EventArgs e)
         {
-
+            txtBusca.Focus();
+            FiltrarJogos();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            FiltrarJogos();
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Selecione um jogo na tabela para excluir.");
+                return;
+            }
+
+            int linha = dataGridView1.CurrentRow.Index;
+            int idRemove = Convert.ToInt32(dataGridView1.Rows[linha].Cells["idjogos"].Value);
+            string nomeJogo = dataGridView1.Rows[linha].Cells["colTitulo"].Value.ToString();
+
+            DialogResult resp = MessageBox.Show($"Tem certeza que deseja excluir \"{nomeJogo}\"?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (resp == DialogResult.Yes)
+            {
+                ConectaBanco con = new ConectaBanco();
+                if (con.deletaGame(idRemove))
+                {
+                    MessageBox.Show("Jogo excluído com sucesso!");
+                    lista_gridGames();
+                }
+                else
+                {
+                    MessageBox.Show(con.mensagem);
+                }
+            }
+        }
+
+        private void txtBusca_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarJogos();
+        }
+
+        private void FiltrarJogos()
+        {
+            if (dataGridView1.DataSource is DataTable dt)
+            {
+                string termo = txtBusca.Text.Replace("'", "''");
+                dt.DefaultView.RowFilter = string.Format("nome LIKE '%{0}%'", termo);
+            }
+        }
+
     }
 }

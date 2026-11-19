@@ -33,18 +33,23 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(usBuscar));
             pnlTopo = new Panel();
+            pnlBusca = new Panel();
+            txtBusca = new TextBox();
             lblTitulo = new Label();
             btnBuscar = new Button();
             dataGridView1 = new DataGridView();
             btnBuscarNome = new Button();
             btnAlterar = new Button();
+            btnExcluir = new Button();
             pnlTopo.SuspendLayout();
+            pnlBusca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // pnlTopo
             // 
             pnlTopo.BackColor = Color.FromArgb(38, 18, 53);
+            pnlTopo.Controls.Add(pnlBusca);
             pnlTopo.Controls.Add(lblTitulo);
             pnlTopo.Controls.Add(btnBuscar);
             pnlTopo.Dock = DockStyle.Top;
@@ -52,6 +57,29 @@
             pnlTopo.Name = "pnlTopo";
             pnlTopo.Size = new Size(1100, 80);
             pnlTopo.TabIndex = 0;
+            // 
+            // pnlBusca
+            // 
+            pnlBusca.BackColor = Color.FromArgb(30, 30, 46);
+            pnlBusca.BorderStyle = BorderStyle.FixedSingle;
+            pnlBusca.Controls.Add(txtBusca);
+            pnlBusca.Location = new Point(657, 20);
+            pnlBusca.Name = "pnlBusca";
+            pnlBusca.Size = new Size(280, 40);
+            pnlBusca.TabIndex = 3;
+            // 
+            // txtBusca
+            // 
+            txtBusca.BackColor = Color.FromArgb(30, 30, 46);
+            txtBusca.BorderStyle = BorderStyle.None;
+            txtBusca.Font = new Font("Segoe UI", 11F);
+            txtBusca.ForeColor = Color.White;
+            txtBusca.Location = new Point(12, 7);
+            txtBusca.Name = "txtBusca";
+            txtBusca.PlaceholderText = "Pesquisar jogo...";
+            txtBusca.Size = new Size(221, 20);
+            txtBusca.TabIndex = 2;
+            txtBusca.TextChanged += txtBusca_TextChanged;
             // 
             // lblTitulo
             // 
@@ -89,6 +117,7 @@
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(247, 245, 250);
             dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
@@ -117,6 +146,7 @@
             dataGridView1.GridColor = Color.FromArgb(220, 220, 225);
             dataGridView1.Location = new Point(55, 194);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 36;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -156,11 +186,28 @@
             btnAlterar.UseVisualStyleBackColor = false;
             btnAlterar.Click += btnAlterar_Click;
             // 
+            // btnExcluir
+            // 
+            btnExcluir.BackColor = Color.FromArgb(38, 18, 53);
+            btnExcluir.Cursor = Cursors.Hand;
+            btnExcluir.FlatAppearance.BorderSize = 0;
+            btnExcluir.FlatAppearance.MouseDownBackColor = Color.FromArgb(55, 35, 75);
+            btnExcluir.FlatAppearance.MouseOverBackColor = Color.FromArgb(55, 35, 75);
+            btnExcluir.FlatStyle = FlatStyle.Flat;
+            btnExcluir.Image = Properties.Resources.bin;
+            btnExcluir.Location = new Point(213, 114);
+            btnExcluir.Name = "btnExcluir";
+            btnExcluir.Size = new Size(64, 64);
+            btnExcluir.TabIndex = 4;
+            btnExcluir.UseVisualStyleBackColor = false;
+            btnExcluir.Click += btnExcluir_Click;
+            // 
             // usBuscar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 46);
+            Controls.Add(btnExcluir);
             Controls.Add(btnAlterar);
             Controls.Add(btnBuscarNome);
             Controls.Add(dataGridView1);
@@ -169,6 +216,8 @@
             Size = new Size(1100, 650);
             Load += usBuscar_Load;
             pnlTopo.ResumeLayout(false);
+            pnlBusca.ResumeLayout(false);
+            pnlBusca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -181,5 +230,8 @@
         private DataGridView dataGridView1;
         private Button btnBuscarNome;
         private Button btnAlterar;
+        private TextBox txtBusca;
+        private Button btnExcluir;
+        private Panel pnlBusca;
     }
 }

@@ -215,10 +215,10 @@
             tabCadastrar.Controls.Add(lblPlataforma);
             tabCadastrar.Controls.Add(txtNome);
             tabCadastrar.Controls.Add(lblNome);
-            tabCadastrar.Location = new Point(4, 5);
+            tabCadastrar.Location = new Point(4, 24);
             tabCadastrar.Name = "tabCadastrar";
             tabCadastrar.Padding = new Padding(3);
-            tabCadastrar.Size = new Size(1092, 531);
+            tabCadastrar.Size = new Size(1092, 512);
             tabCadastrar.TabIndex = 0;
             tabCadastrar.Text = "Cadastrar";
             tabCadastrar.Click += tabCadastrar_Click;
@@ -277,6 +277,7 @@
             btnSalvarJogo.Text = "Salvar Jogo";
             btnSalvarJogo.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSalvarJogo.UseVisualStyleBackColor = false;
+            btnSalvarJogo.Click += btnSalvarJogo_Click;
             // 
             // lblNota
             // 
@@ -407,6 +408,7 @@
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(450, 23);
             txtNome.TabIndex = 0;
+            txtNome.TextChanged += txtNome_TextChanged;
             // 
             // lblNome
             // 
@@ -424,10 +426,10 @@
             tabBuscar.BackColor = Color.FromArgb(30, 30, 46);
             tabBuscar.Controls.Add(usBuscar1);
             tabBuscar.Controls.Add(label2);
-            tabBuscar.Location = new Point(4, 24);
+            tabBuscar.Location = new Point(4, 5);
             tabBuscar.Name = "tabBuscar";
             tabBuscar.Padding = new Padding(3);
-            tabBuscar.Size = new Size(1092, 512);
+            tabBuscar.Size = new Size(1092, 531);
             tabBuscar.TabIndex = 1;
             tabBuscar.Text = "Buscar";
             // 
@@ -437,7 +439,7 @@
             usBuscar1.Dock = DockStyle.Fill;
             usBuscar1.Location = new Point(3, 3);
             usBuscar1.Name = "usBuscar1";
-            usBuscar1.Size = new Size(1086, 506);
+            usBuscar1.Size = new Size(1086, 525);
             usBuscar1.TabIndex = 2;
             // 
             // label2
@@ -468,10 +470,10 @@
             tabAlterar.Controls.Add(label7);
             tabAlterar.Controls.Add(txtAlteraNome);
             tabAlterar.Controls.Add(label8);
-            tabAlterar.Location = new Point(4, 24);
+            tabAlterar.Location = new Point(4, 5);
             tabAlterar.Name = "tabAlterar";
             tabAlterar.Padding = new Padding(3);
-            tabAlterar.Size = new Size(1092, 512);
+            tabAlterar.Size = new Size(1092, 531);
             tabAlterar.TabIndex = 2;
             tabAlterar.Text = "Alterar";
             // 
@@ -666,6 +668,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            Load += Form1_Load;
             pnlTopo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBoxImagemTopo).EndInit();
             pnlConteudo.ResumeLayout(false);

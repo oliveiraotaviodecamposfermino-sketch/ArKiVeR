@@ -151,7 +151,7 @@
             btnExcluirGenero.Font = new Font("Segoe UI", 11F);
             btnExcluirGenero.ForeColor = Color.FromArgb(229, 229, 229);
             btnExcluirGenero.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExcluirGenero.Location = new Point(71, 403);
+            btnExcluirGenero.Location = new Point(71, 421);
             btnExcluirGenero.Name = "btnExcluirGenero";
             btnExcluirGenero.Size = new Size(350, 42);
             btnExcluirGenero.TabIndex = 7;

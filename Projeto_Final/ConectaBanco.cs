@@ -1,14 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace Projeto_Final
 {
     internal class ConectaBanco
     {
-        MySqlConnection conexao = new MySqlConnection("server=localhost; port=3306; User Id=root; password=963852741; database=banco_arkiver");
+        MySqlConnection conexao = new MySqlConnection("server=arkiver-arkiver.i.aivencloud.com; port=21661; User Id=avnadmin; password=-senha-; database=defaultdb; SslMode=Required;");
         public string mensagem;
 
         public bool verifica(string user, string pass)
@@ -208,7 +205,7 @@ namespace Projeto_Final
             {
                 conexao.Close();
             }
-        }   
+        }
 
         public bool alteraGame(Jogo jogoAlterado, int idGame)
         {

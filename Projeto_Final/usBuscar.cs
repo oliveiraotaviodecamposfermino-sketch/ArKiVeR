@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace Projeto_Final
 {
     public partial class usBuscar : UserControl
     {
+        // Inicializa controle busca
         public usBuscar()
         {
             InitializeComponent();
             ConfigurarDataGridView();
         }
 
+        // Configura colunas tabela
         private void ConfigurarDataGridView()
         {
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns.Clear();
+            // Mapeia colunas banco
             dataGridView1.Columns.AddRange(
                 new DataGridViewTextBoxColumn { Name = "idjogos", DataPropertyName = "idjogos", Visible = false },
                 new DataGridViewTextBoxColumn { Name = "colTitulo", HeaderText = "Título", DataPropertyName = "nome", FillWeight = 20 },
@@ -32,6 +29,7 @@ namespace Projeto_Final
                 new DataGridViewTextBoxColumn { Name = "colDescricao", HeaderText = "Observação", DataPropertyName = "observacao", FillWeight = 22 }
             );
 
+            // Estiliza aparência tabela
             dataGridView1.ColumnHeadersVisible = true;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersHeight = 42;
@@ -47,6 +45,7 @@ namespace Projeto_Final
             dataGridView1.GridColor = Color.FromArgb(220, 220, 225);
         }
 
+        // Carrega jogos tabela
         public void lista_gridGames()
         {
             ConectaBanco con = new ConectaBanco();
@@ -68,6 +67,7 @@ namespace Projeto_Final
 
         }
 
+        // Carrega dados iniciais
         private void usBuscar_Load(object sender, EventArgs e)
         {
             lista_gridGames();
@@ -79,6 +79,7 @@ namespace Projeto_Final
 
         }
 
+        // Envia jogo edição
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null)
@@ -87,6 +88,7 @@ namespace Projeto_Final
                 return;
             }
 
+            // Captura dados linha
             int linha = dataGridView1.CurrentRow.Index;
             int idAlterar = Convert.ToInt32(dataGridView1.Rows[linha].Cells["idjogos"].Value);
             string nome = dataGridView1.Rows[linha].Cells["colTitulo"].Value.ToString();
@@ -99,20 +101,23 @@ namespace Projeto_Final
 
             Form1 formPrincipal = (Form1)this.FindForm();
             formPrincipal.PreencherAbaAlterar(idAlterar, nome, plataforma, genero, desenvolvedora, ano, nota, observacao);
-        
+
         }
 
+        // Foca campo busca
         private void btnBuscarNome_Click(object sender, EventArgs e)
         {
             txtBusca.Focus();
             FiltrarJogos();
         }
 
+        // Executa filtro busca
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             FiltrarJogos();
         }
 
+        // Exclui jogo selecionado
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null)
@@ -141,11 +146,13 @@ namespace Projeto_Final
             }
         }
 
+        // Filtra enquanto digita
         private void txtBusca_TextChanged(object sender, EventArgs e)
         {
             FiltrarJogos();
         }
 
+        // Aplica filtro DataTable  
         private void FiltrarJogos()
         {
             if (dataGridView1.DataSource is DataTable dt)

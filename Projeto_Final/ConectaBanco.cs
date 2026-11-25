@@ -8,8 +8,10 @@ namespace Projeto_Final
         MySqlConnection conexao = new MySqlConnection("server=arkiver-arkiver.i.aivencloud.com; port=21661; User Id=avnadmin; password=-senha-; database=defaultdb; SslMode=Required;");
         public string mensagem;
 
+        // Valida credenciais login
         public bool verifica(string user, string pass)
         {
+            // Criptografa senha SHA256
             string senhaHash = BibliotecaHash.makeHash(pass);
             MySqlCommand cmd = new MySqlCommand("sp_ConsultaLogin", conexao);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -37,6 +39,7 @@ namespace Projeto_Final
             }
         }//fim verifica
 
+        // Retorna tabela gêneros
         public DataTable listaGeneros()
         {
             MySqlCommand cmd = new MySqlCommand("sp_listaGeneros", conexao);
@@ -61,6 +64,7 @@ namespace Projeto_Final
 
         }// fim lista_generos 
 
+        // Cadastra novo gênero
         public bool InserirGenero(string nomeGenero)
         {
             try
@@ -84,7 +88,7 @@ namespace Projeto_Final
 
         }// fim do insereGenero
 
-
+        // Cadastra novo jogo
         public bool insereGame(Jogo novoJogo)
         {
             try
@@ -113,6 +117,7 @@ namespace Projeto_Final
             }
         }//fim insereGame
 
+        // Retorna lista jogos
         public DataTable listaGames()
         {
             MySqlCommand cmd = new MySqlCommand("sp_ListarGames", conexao);
@@ -136,6 +141,7 @@ namespace Projeto_Final
             }
         }//fim listaGames
 
+        // Retorna lista plataformas
         public DataTable listaPlataformas()
         {
             MySqlCommand cmd = new MySqlCommand("sp_listaPlataformas", conexao);
@@ -159,6 +165,7 @@ namespace Projeto_Final
             }
         }
 
+        // Exclui jogo selecionado
         public bool deletaGame(int idRemoveGame)
         {
             MySqlCommand cmd = new MySqlCommand("sp_removeGame", conexao);
@@ -181,6 +188,7 @@ namespace Projeto_Final
             }
         }
 
+        // Exclui gênero selecionado
         public bool RemoveGenero(int idGenero)
         {
             MySqlCommand cmd = new MySqlCommand("sp_removeGenero", conexao);
@@ -207,6 +215,7 @@ namespace Projeto_Final
             }
         }
 
+        // Atualiza dados jogo
         public bool alteraGame(Jogo jogoAlterado, int idGame)
         {
             MySqlCommand cmd = new MySqlCommand("sp_alteraGame", conexao);

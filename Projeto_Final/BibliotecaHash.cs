@@ -7,7 +7,7 @@ namespace Projeto_Final
     {
         public static string makeHash(string rawData)
         {
-            // Create a SHA256
+            // Gera hash SHA256
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));

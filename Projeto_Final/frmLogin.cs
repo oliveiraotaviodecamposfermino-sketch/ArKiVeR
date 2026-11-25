@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-namespace Projeto_Final
+﻿namespace Projeto_Final
 {
     public partial class frmLogin : Form
     {
@@ -15,6 +7,7 @@ namespace Projeto_Final
             InitializeComponent();
         }
 
+        // Fecha tela login
         private void btnFechar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -25,6 +18,7 @@ namespace Projeto_Final
 
         }
 
+        // Autentica acesso usuário
         private void btnLogin_Click(object sender, EventArgs e)
         {
             ConectaBanco conecta = new ConectaBanco();
@@ -39,6 +33,11 @@ namespace Projeto_Final
             {
                 MessageBox.Show("Usuário ou senha incorretos!" + conecta.mensagem);
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

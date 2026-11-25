@@ -4,6 +4,7 @@ namespace Projeto_Final
 {
     public partial class Form1 : Form
     {
+        // ID jogo edição
         int idAlterar;
 
         public Form1()
@@ -11,11 +12,13 @@ namespace Projeto_Final
             InitializeComponent();
         }
 
+        // Fecha formulário atual
         private void btnFechar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // Abre aba busca
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             MoverMarcador(btnBuscar);
@@ -23,17 +26,20 @@ namespace Projeto_Final
             usBuscar1.lista_gridGames();
         }
 
+        // Abre aba cadastro
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             MoverMarcador(btnCadastrar);
             tabTelas.SelectedTab = tabCadastrar;
         }
 
+        // Seleciona aba alterar
         public void AbrirAbaAlterar()
         {
             tabTelas.SelectedTab = tabAlterar;
         }
 
+        // Posiciona marcador visual
         private void MoverMarcador(Button botao)
         {
             marcador.Width = botao.Width;
@@ -41,6 +47,7 @@ namespace Projeto_Final
             marcador.Top = botao.Bottom;
         }
 
+        // Carrega listas iniciais
         private void Form1_Load(object sender, EventArgs e)
         {
             listaCBGeneros();
@@ -62,6 +69,7 @@ namespace Projeto_Final
 
         }
 
+        // Salva edição jogo
         private void btnSalvarAlteracao_Click(object sender, EventArgs e)
         {
             if (cbmAlteraPlataforma.SelectedValue == null || cbmAlteraGenero.SelectedValue == null)
@@ -73,6 +81,7 @@ namespace Projeto_Final
             ConectaBanco con = new ConectaBanco();
             Jogo jogoEditado = new Jogo();
 
+            // Preenche objeto jogo
             jogoEditado.Nome = txtAlteraNome.Text;
             jogoEditado.Fk_plataforma = Convert.ToInt32(cbmAlteraPlataforma.SelectedValue);
             jogoEditado.Fk_genero = Convert.ToInt32(cbmAlteraGenero.SelectedValue);
@@ -94,6 +103,7 @@ namespace Projeto_Final
             }
         }
 
+        // Abre tela gêneros
         private void btnAddGenero_Click(object sender, EventArgs e)
         {
             frmAdicionarGenero formGenero = new frmAdicionarGenero();
@@ -107,6 +117,7 @@ namespace Projeto_Final
 
         }
 
+        // Carrega ComboBox gêneros
         public void listaCBGeneros()
         {
             ConectaBanco con = new ConectaBanco();
@@ -122,6 +133,7 @@ namespace Projeto_Final
             cbmAlteraGenero.SelectedIndex = -1;
         }
 
+        // Carrega ComboBox plataformas
         public void listaCBPlataformas()
         {
             ConectaBanco con = new ConectaBanco();
@@ -137,6 +149,7 @@ namespace Projeto_Final
             cbmAlteraPlataforma.SelectedIndex = -1;
         }
 
+        // Preenche campos edição
         public void PreencherAbaAlterar(int id, string nome, string plataforma, string genero, string desenvolvedora, int ano, decimal nota, string observacao)
         {
             idAlterar = id;
@@ -151,6 +164,7 @@ namespace Projeto_Final
             tabTelas.SelectedTab = tabAlterar;
         }
 
+        // Limpa formulário cadastro
         void limpaCampos()
         {
             txtNome.Clear();
@@ -163,11 +177,13 @@ namespace Projeto_Final
             txtNome.Focus();
         }
 
+        // Cadastra novo jogo
         private void btnSalvarJogo_Click(object sender, EventArgs e)
         {
             ConectaBanco con = new ConectaBanco();
             Jogo novoJogo = new Jogo();
 
+            // Preenche objeto jogo
             novoJogo.Nome = txtNome.Text;
             novoJogo.Fk_plataforma = Convert.ToInt32(cmbPlataforma.SelectedValue);
             novoJogo.Fk_genero = Convert.ToInt32(cmbGenero.SelectedValue);

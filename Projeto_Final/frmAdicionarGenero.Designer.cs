@@ -95,6 +95,7 @@
             txtNovoGenero.Name = "txtNovoGenero";
             txtNovoGenero.Size = new Size(350, 24);
             txtNovoGenero.TabIndex = 2;
+            txtNovoGenero.TextChanged += txtNovoGenero_TextChanged;
             // 
             // btnSalvarGenero
             // 

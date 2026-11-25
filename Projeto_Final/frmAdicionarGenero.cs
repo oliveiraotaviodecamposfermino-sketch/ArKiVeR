@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-namespace Projeto_Final
+﻿namespace Projeto_Final
 {
     public partial class frmAdicionarGenero : Form
     {
+        // Inicializa formulário gêneros
         public frmAdicionarGenero()
         {
             InitializeComponent();
             CarregarGeneros();
         }
 
+        // Retorna tela principal
         private void btnFecharGenero_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -24,6 +18,7 @@ namespace Projeto_Final
             this.Close();
         }
 
+        // Cadastra novo gênero
         private void btnSalvarGenero_Click(object sender, EventArgs e)
         {
             ConectaBanco con = new ConectaBanco();
@@ -49,6 +44,7 @@ namespace Projeto_Final
 
         }
 
+        // Popula ComboBox gêneros
         private void CarregarGeneros()
         {
             ConectaBanco con = new ConectaBanco();
@@ -58,6 +54,7 @@ namespace Projeto_Final
             cmbExcluirGenero.SelectedIndex = -1;
         }
 
+        // Exclui gênero selecionado
         private void btnExcluirGenero_Click(object sender, EventArgs e)
         {
             if (cmbExcluirGenero.SelectedValue == null)
@@ -88,6 +85,11 @@ namespace Projeto_Final
                     MessageBox.Show(con.mensagem);
                 }
             }
+        }
+
+        private void txtNovoGenero_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

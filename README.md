@@ -36,15 +36,15 @@ Lista os jogos e permite busca por título do game.
 ### Passo a passo
 
 1. Clone o repositório:
-
+   ```
    git clone https://github.com/oliveiraotaviodecamposfermino-sketch/ArKiVeR.git
-   
+   ```
 2. Abra o arquivo `Projeto_Final.slnx` no Visual Studio. Os pacotes NuGet são restaurados automaticamente.
 3. Abra o arquivo `Projeto_Final/ConectaBanco.cs` e troque `-senha-` na string de conexão pela senha do banco, enviada no comentário particular da atividade.
 4. Pressione **F5** (ou **Ctrl+F5**) para executar. Pelo terminal, também funciona:
-   
+   ```
    dotnet run --project Projeto_Final
-   
+   ```
 
 ### Login
 

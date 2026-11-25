@@ -31,11 +31,9 @@ namespace Projeto_Final
 
         public void AbrirAbaAlterar()
         {
-            // Muda para a aba de alteração
             tabTelas.SelectedTab = tabAlterar;
         }
 
-        // Método para mover o marcador para o botão clicado
         private void MoverMarcador(Button botao)
         {
             marcador.Width = botao.Width;
